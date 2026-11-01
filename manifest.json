@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HOT Chrome Compatibility",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Use HOT's HTML5 Widevine player in a dedicated Chrome profile.",
   "permissions": [
     "declarativeNetRequest"

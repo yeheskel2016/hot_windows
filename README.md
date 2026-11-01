@@ -12,7 +12,7 @@ The launcher:
 
 The compatibility script selects the site's HTML5 OpenTV player, replaces its placeholder stream branches, and prevents the dormant PC player from filtering out all video representations. Playback keeps HOT's AndroidTV profile: clear-play HEVC without DRM for unencrypted channels, and AndroidTV H.264 with Widevine for encrypted channels. It also maintains `hotChromeSessionBackupV1` in the profile and restores the session if HOT clears its standard login keys. Credentials are never printed or transmitted by the bootstrap.
 
-Version 1.4 adds lifecycle hardening: generation-scoped callbacks and timers, deterministic OpenTV disposal, duplicate-video prevention, stale-library callback guards, and sequential preroll/feature playback.
+Version 1.4 adds lifecycle hardening: generation-scoped callbacks and timers, deterministic OpenTV disposal, duplicate-video prevention, stale-library callback guards, and sequential preroll/feature playback. Version 1.4.1 also uses the standard H.264 catchup asset for Start Over instead of HOT's encrypted HEVC-only substitution.
 
 Run the lifecycle tests with:
 

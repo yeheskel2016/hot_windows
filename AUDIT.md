@@ -3,7 +3,7 @@
 ## Working build
 
 - Launcher: `Launch-HOT-Chrome.cmd` (brief console flash, hidden helper, visible Chrome window).
-- Current version: 1.4.0. Rollback backups exist under `hot-chrome-stable-1.2.0` and `hot-chrome-stable-1.3.0`; the hardened build is saved under `hot-chrome-stable-1.4.0`.
+- Current version: 1.4.1. Rollback backups exist under `hot-chrome-stable-1.2.0` and `hot-chrome-stable-1.3.0`; the hardened build is saved under `hot-chrome-stable-1.4.0`.
 - Network identity: Android user agent supplied by Chrome's command-line override.
 - Login/device identity: AndroidTV (`ClientID=7`), retained independently of the HTML5 playback backend.
 - No browser extension is installed. `bootstrap.mjs` installs `inject.js` into the HOT tab through loopback-only CDP and exits with the tab.
@@ -62,6 +62,7 @@ Validation completed:
 - Encrypted H.264/Widevine and clear HEVC playback both pass after hardening.
 - Rapid `0 → 12 → 16` zaps finish on channel 16 with one video element, no exceptions, no player error, and stale callbacks ignored.
 - `node --test tests/lifecycle.test.cjs`: three tests pass for stale URL responses, preroll completion, and preroll failure.
+- Start Over on channels 12 and 0 passes in 1.4.1: disabling `EnableClearCU` only for that call selects the standard catchup asset, yielding H.264, successful Widevine licenses, and 1080p playback from each event's start. Normal live clear-play remains enabled.
 
 ## PC-specific notes
 

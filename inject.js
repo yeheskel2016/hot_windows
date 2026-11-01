@@ -19,7 +19,7 @@
 
     const PREFIX = "[HOT Chrome]";
     const state = window.__hotChrome = {
-        version: "1.4.0",
+        version: "1.4.1",
         patched: false,
         streamProfile: "ANDROID",
         streamRequests: 0,
@@ -244,6 +244,20 @@
         ]) {
             wrap(name, "url");
         }
+
+        // EnableClearCU replaces the standard catchup asset with an encrypted
+        // HEVC-only rendition. Chrome Widevine cannot play that rendition, but
+        // the original HLSurlSimple asset provides H.264 with the same entitlements.
+        const originalPlayStartOver = utils.PlayStartOver;
+        utils.PlayStartOver = function (...args) {
+            const saved = utils.EnableClearCU;
+            utils.EnableClearCU = false;
+            try {
+                return originalPlayStartOver.apply(this, args);
+            } finally {
+                utils.EnableClearCU = saved;
+            }
+        };
 
         function isClearPlayback(url) {
             try {
