@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "HOT Chrome Compatibility",
+  "version": "1.4.0",
+  "description": "Use HOT's HTML5 Widevine player in a dedicated Chrome profile.",
+  "permissions": [
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "https://androidplay.hot.net.il/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://androidplay.hot.net.il/bluesky_1_52/*"
+      ],
+      "js": [
+        "lifecycle.js",
+        "inject.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": false
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "android_user_agent",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}

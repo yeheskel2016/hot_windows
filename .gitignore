@@ -1,0 +1,12 @@
+# Dedicated browser profile and account/session data
+hot-chrome-profile/
+
+# Runtime diagnostics and captured media
+*.log
+*.png
+hot-manifest.mpd
+
+# Local tooling
+node_modules/
+.DS_Store
+Thumbs.db
