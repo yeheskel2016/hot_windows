@@ -1,6 +1,12 @@
 # Native HOT APK audit for the Chrome implementation
 
-Baseline: Chrome compatibility version 1.4.1. This audit is read-only and excludes credentials, tokens, signed media URLs, and device-private data.
+Baseline: Chrome compatibility version 1.5.0. This audit excludes credentials, tokens, signed media URLs, and device-private data.
+
+## 1.5.0 implementation status
+
+The immediate correctness work identified by the native audit is implemented: complete preroll transition/bookmark isolation, trailer-only errors, seek-and-play and Start Over resume, stream MIME selection, LLC gating, Go To Live, and behind-live-window handling. A single bounded starvation watchdog with position preservation and offline reconnect debounce is also implemented. Eleven lifecycle unit tests pass, alongside browser tests for encrypted live, clear HEVC, Start Over/resume, rapid zaps, and Go To Live.
+
+Player reuse across zaps and native live/LLC latency tuning remain test-first items; no latency problem has been established, so they were not changed.
 
 ## Evaluation criteria
 

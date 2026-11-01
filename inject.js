@@ -19,7 +19,7 @@
 
     const PREFIX = "[HOT Chrome]";
     const state = window.__hotChrome = {
-        version: "1.4.1",
+        version: "1.5.0",
         patched: false,
         streamProfile: "ANDROID",
         streamRequests: 0,
@@ -136,9 +136,46 @@
             },
             seekToSaveAssetPosition(milliseconds) {
                 this.seekTo(milliseconds);
+                const player = video();
+                Promise.resolve(player?.play?.()).catch(noop);
             },
+            goToLive() {
+                return window.__hotGoToLive?.();
+            },
+            getDefaultPositionMs() {
+                return window.__hotGetDefaultPositionMs?.() || 0;
+            },
+            getWindowBufferStartMS() {
+                const player = video();
+                try { return (player?.seekable?.().start?.() || 0) * 1000; }
+                catch (_) { return 0; }
+            },
+            playerBufferDurationMS() {
+                const player = video();
+                try {
+                    const current = player?.currentTime?.() || 0;
+                    const buffered = player?.buffered?.();
+                    for (let index = 0; index < (buffered?.length || 0); index++) {
+                        if (current >= buffered.start(index) && current <= buffered.end(index)) {
+                            return Math.max(0, buffered.end(index) - current) * 1000;
+                        }
+                    }
+                } catch (_) { }
+                return 0;
+            },
+            FastForward(milliseconds) {
+                this.seekTo(milliseconds);
+            },
+            Rewind(milliseconds) {
+                this.seekTo(milliseconds);
+            },
+            getCurrentTrack: () => 0,
             closeplayer() {
-                video()?.pause?.();
+                if (typeof window.__hotCloseActivePlayer === "function") {
+                    window.__hotCloseActivePlayer(false);
+                } else {
+                    video()?.pause?.();
+                }
             },
             ExitApp() {
                 window.close();

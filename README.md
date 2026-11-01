@@ -14,6 +14,8 @@ The compatibility script selects the site's HTML5 OpenTV player, replaces its pl
 
 Version 1.4 adds lifecycle hardening: generation-scoped callbacks and timers, deterministic OpenTV disposal, duplicate-video prevention, stale-library callback guards, and sequential preroll/feature playback. Version 1.4.1 also uses the standard H.264 catchup asset for Start Over instead of HOT's encrypted HEVC-only substitution.
 
+Version 1.5 adds the native-APK parity fixes: complete preroll transition and bookmark isolation, trailer-only errors, seek-and-play and Start Over resume, source MIME selection, LLC gating, Go To Live, and a bounded starvation/reconnect recovery controller.
+
 Run the lifecycle tests with:
 
 ```bat
