@@ -26,6 +26,6 @@ Close existing HOT windows in this dedicated profile before launching again. Do 
 
 Chrome process logging is written to `hot-chrome-profile\hot-chrome.log` at fatal-only level, so harmless Chrome updater IPC errors do not spam the terminal.
 
-See **AUDIT.md** for verified playback coverage, request/profile details, DRM differences, and remaining lifecycle improvement ideas.
+See **AUDIT.md** for verified playback coverage, request/profile details, and DRM differences. See **APK_AUDIT.md** for the native APK comparison and prioritized improvement plan.
 
 For diagnostics, open DevTools with **Ctrl+Shift+J**. Messages from the compatibility script start with `[HOT Chrome]`, and `window.__hotChrome` reports its status. Do not share `userCredential_NOLIMITS`, `ClientToken`, license bodies, or the session-backup value; they are account secrets.
